@@ -13,5 +13,12 @@
     "@types/node": "^22.10.2",
     "ts-node": "^10.9.2", 
     "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
+    "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
+    "db-seed": "knex --knexfile knexfile.ts seed:run"
   }
 }
