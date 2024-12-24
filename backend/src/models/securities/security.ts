@@ -7,4 +7,3 @@ enum Security {
   CRYPTO = "crypto",
 }
 
-
