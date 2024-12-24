@@ -29,8 +29,8 @@
     "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
     "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "db-seed": "knex --knexfile knexfile.ts seed:run",
-    "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "lint": "eslint src --ext .ts --fix"
+    "format": "prettier --write \"**/*.ts\"",
+    "lint": "eslint . --ext .ts --fix"
   },
   "pre-commit": [
     "yarn format",
