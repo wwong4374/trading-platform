@@ -12,15 +12,24 @@
   "devDependencies": {
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
     "db-create": "ts-node createDB.ts",
     "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
     "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
     "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "db-seed": "knex --knexfile knexfile.ts seed:run"
+    "db-seed": "knex --knexfile knexfile.ts seed:run",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "lint": "eslint . --ext .ts",
+    "prepare": "husky install",
+    "start": "ts-node src/index.ts"
+  },
+  "lint-staged": {
+    "*.ts": ["eslint --fix", "prettier --write"],
+    "*.{json,md}": ["prettier --write"]
   }
 }
