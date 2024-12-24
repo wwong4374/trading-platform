@@ -17,7 +17,6 @@
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "lint-staged": "^15.2.11",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.0",
     "ts-node": "^10.9.2",
@@ -31,7 +30,7 @@
     "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "db-seed": "knex --knexfile knexfile.ts seed:run",
     "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint src --ext .ts --fix"
   },
   "pre-commit": [
     "format",
