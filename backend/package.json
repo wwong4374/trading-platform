@@ -5,20 +5,21 @@
   "repository": "git@github.com:wwong4374/trading-platform.git",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "knex": "^3.1.0",
     "pg": "^8.13.1"
   },
   "devDependencies": {
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.2",
-    "ts-node": "^10.9.2", 
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
-    "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
-    "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "db-seed": "knex --knexfile knexfile.ts seed:run"
+    "db-migrate": "knex --knexfile ./backend/knexfile.ts migrate:latest",
+    "db-migrate-make": "knex --knexfile ./backend/knexfile.ts migrate:make",
+    "db-migrate-rollback": "knex --knexfile ./backend/knexfile.ts migrate:rollback",
+    "db-seed": "knex --knexfile ./backend/knexfile.ts seed:run"
   }
 }
