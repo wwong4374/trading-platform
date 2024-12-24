@@ -6,4 +6,3 @@ enum Security {
   ETF = "etf",
   CRYPTO = "crypto",
 }
-
