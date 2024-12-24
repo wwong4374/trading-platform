@@ -17,7 +17,7 @@ async function createDatabase() {
     `CREATE USER ${process.env.DB_USER} WITH PASSWORD '${process.env.DB_PASSWORD || ''}';`,
     `GRANT ALL PRIVILEGES ON DATABASE ${process.env.DB_NAME} TO ${process.env.DB_USER};`,
   ];
-  
+
   for (const command of commands) {
     try {
       await execPromise(`psql postgres -c "${command}"`);
@@ -28,7 +28,9 @@ async function createDatabase() {
   }
 
   try {
-    await execPromise(`psql ${process.env.DB_NAME} -c "GRANT ALL ON SCHEMA public TO ${process.env.DB_USER};"`);
+    await execPromise(
+      `psql ${process.env.DB_NAME} -c "GRANT ALL ON SCHEMA public TO ${process.env.DB_USER};"`
+    );
     console.log('Granted schema permissions');
   } catch (err) {
     console.error('Error granting schema permissions:', err);

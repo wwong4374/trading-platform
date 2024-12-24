@@ -33,7 +33,7 @@
     "lint": "eslint src --ext .ts --fix"
   },
   "pre-commit": [
-    "format",
-    "lint"
+    "yarn format",
+    "yarn lint"
   ]
 }
