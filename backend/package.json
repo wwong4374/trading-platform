@@ -33,6 +33,7 @@
     "lint": "eslint . --ext .ts --fix"
   },
   "pre-commit": [
-    "scripts/pre-commit.sh"
+    "format",
+    "lint"
   ]
 }
