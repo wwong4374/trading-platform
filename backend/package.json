@@ -17,25 +17,24 @@
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.0.0",
-    "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "scripts": {
+    "start": "ts-node src/index.ts",
     "db-create": "ts-node createDB.ts",
     "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
     "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
     "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "db-seed": "knex --knexfile knexfile.ts seed:run",
     "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "lint": "eslint . --ext .ts",
-    "prepare": "husky install",
-    "start": "ts-node src/index.ts"
+    "lint": "eslint . --ext .ts --fix"
   },
-  "lint-staged": {
-    "*.ts": ["eslint --fix", "prettier --write"],
-    "*.{json,md}": ["prettier --write"]
-  }
+  "pre-commit": [
+    "format",
+    "lint"
+  ]
 }
