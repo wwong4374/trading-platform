@@ -17,9 +17,10 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "db-migrate": "knex --knexfile ./backend/knexfile.ts migrate:latest",
-    "db-migrate-make": "knex --knexfile ./backend/knexfile.ts migrate:make",
-    "db-migrate-rollback": "knex --knexfile ./backend/knexfile.ts migrate:rollback",
-    "db-seed": "knex --knexfile ./backend/knexfile.ts seed:run"
+    "db-create": "ts-node createDB.ts",
+    "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
+    "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
+    "db-seed": "knex --knexfile knexfile.ts seed:run"
   }
 }
