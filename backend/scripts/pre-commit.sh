@@ -1,4 +1,6 @@
-#! /bin/bash
+#!/bin/bash
 
-yarn format
-yarn lint
+cd "$(git rev-parse --show-toplevel)/backend"
+yarn prettier --write "src/**/*.ts" --config .prettierrc.json
+yarn eslint . --ext .ts --fix
+git add .
