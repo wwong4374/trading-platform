@@ -7,6 +7,10 @@ enum Security {
   CRYPTO = "crypto",
 }
 
-
+interface BaseSecurity extends BaseItem {
+  ticker: string;
+  name: string;
+  type: Security;
+}
 
 
