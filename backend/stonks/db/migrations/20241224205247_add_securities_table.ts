@@ -1,7 +1,7 @@
 import type { Knex } from 'knex';
 
 const tableName = 'securities';
-const validTypes = ['stock', 'bond', 'etf', 'crypto'];
+const validTypes = ['STOCK', 'BOND', 'ETF', 'CRYPTO'];
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(tableName, (table) => {
