@@ -22,7 +22,7 @@ repos:
     hooks:
       - id: eslint
         name: ESLint
-        entry: npx eslint --fix
+        entry: yarn eslint --fix
         files: \.[jt]sx?$
         language: system
 
