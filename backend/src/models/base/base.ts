@@ -3,3 +3,7 @@ export interface BaseItem {
   created: Date;
   updated: Date;
 }
+
+export enum Table {
+  Securities = 'securities',
+}
