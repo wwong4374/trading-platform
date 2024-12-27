@@ -32,7 +32,7 @@ describe('models.securities.security', () => {
   describe('.insert', () => {
     it('should insert a new security', async () => {
       const security = await insert(testSecurity);
-      
+
       expect(security).toMatchObject({
         ...testSecurity,
         id: expect.any(String),
@@ -51,7 +51,7 @@ describe('models.securities.security', () => {
     it('should find security by id', async () => {
       const inserted = await insert(testSecurity);
       const found = await findMaybeOneById(inserted.id);
-      
+
       expect(found).toMatchObject(testSecurity);
     });
 
@@ -65,7 +65,7 @@ describe('models.securities.security', () => {
     it('should find security by ticker', async () => {
       await insert(testSecurity);
       const found = await findMaybeOneByTicker(testSecurity.ticker);
-      
+
       expect(found).toMatchObject(testSecurity);
     });
 
@@ -79,9 +79,9 @@ describe('models.securities.security', () => {
     it('should update security by id', async () => {
       const inserted = await insert(testSecurity);
       const updates = { name: 'Updated Name' };
-      
+
       const updated = await updateById(inserted.id, updates);
-      
+
       expect(updated).toMatchObject({
         ...testSecurity,
         ...updates,
@@ -93,9 +93,9 @@ describe('models.securities.security', () => {
     it('should update security by ticker', async () => {
       await insert(testSecurity);
       const updates = { name: 'Updated Name' };
-      
+
       const updated = await updateByTicker(testSecurity.ticker, updates);
-      
+
       expect(updated).toMatchObject({
         ...testSecurity,
         ...updates,

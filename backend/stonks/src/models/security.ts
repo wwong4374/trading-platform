@@ -5,7 +5,7 @@ export enum SecurityType {
   STOCK = 'stock',
   BOND = 'bond',
   ETF = 'etf',
-  CRYPTO = 'crypto',
+  CRYPTO = "crypto",
 }
 
 interface BaseSecurity {
