@@ -13,6 +13,9 @@
   "devDependencies": {
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
+    "eslint": "^8.56.0",
     "lint-staged": "^15.2.11",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",

@@ -22,8 +22,8 @@ repos:
     hooks:
       - id: eslint
         name: ESLint
-        entry: yarn eslint --fix
-        files: \.[jt]sx?$
+        entry: bash -c 'cd backend && yarn eslint --fix "${@/#backend\//}"'
+        files: backend/.*\.[jt]sx?$
         language: system
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
