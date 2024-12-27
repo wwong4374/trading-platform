@@ -24,7 +24,7 @@
     "vitest": "^1.3.1"
   },
   "scripts": {
-    "db-create": "ts-node createDB.ts",
+    "db-create": "ts-node createDatabase.ts",
     "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
     "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
     "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",

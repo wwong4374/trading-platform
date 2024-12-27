@@ -20,6 +20,22 @@ const config: { [key: string]: Knex.Config } = {
       directory: './stonks/db/seeds',
     },
   },
+  test: {
+    client: 'pg',
+    connection: {
+      host: process.env.TEST_DB_HOST,
+      port: 5432,
+      user: process.env.TEST_DB_USER,
+      password: process.env.TEST_DB_PASSWORD,
+      database: process.env.TEST_DB_NAME,
+    },
+    migrations: {
+      directory: './stonks/db/migrations',
+    },
+    seeds: {
+      directory: './stonks/db/seeds',
+    },
+  },
 };
 
 export default config;
