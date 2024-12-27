@@ -12,7 +12,6 @@
   "devDependencies": {
     "@types/knex": "^0.16.1",
     "@types/node": "^22.10.2",
-    "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
@@ -25,8 +24,8 @@
     "db-seed": "knex --knexfile knexfile.ts seed:run",
     "format": "prettier --write \"**/*.{ts,json,md}\"",
     "lint": "eslint . --ext .ts",
-    "prepare": "husky install",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "test": "vitest --watch --reporter verbose"
   },
   "lint-staged": {
     "*.ts": [
