@@ -2,10 +2,10 @@ import { BaseItem, Table } from './base';
 import { db } from '../../db/connection';
 
 export enum SecurityType {
-  STOCK = 'stock',
-  BOND = 'bond',
-  ETF = 'etf',
-  CRYPTO = 'crypto',
+  STOCK = 'STOCK',
+  BOND = 'BOND',
+  ETF = 'ETF',
+  CRYPTO = 'CRYPTO',
 }
 
 interface BaseSecurity {
