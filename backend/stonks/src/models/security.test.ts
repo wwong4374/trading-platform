@@ -3,14 +3,8 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 import { db } from '../../db/connection';
 import { Table } from './base';
-import {
-  SecurityType,
-  findMaybeOneById,
-  findMaybeOneByTicker,
-  insert,
-  updateById,
-  updateByTicker,
-} from './security';
+import * as Security from './security';
+import { SecurityType, updateById } from './security';
 
 const TABLE_NAME = Table.Securities;
 
@@ -31,7 +25,7 @@ describe('models.securities.security', () => {
 
   describe('.insert', () => {
     it('should insert a new security', async () => {
-      const security = await insert(testSecurity);
+      const security = await Security.insert(testSecurity);
 
       expect(security).toMatchObject({
         ...testSecurity,
@@ -42,42 +36,42 @@ describe('models.securities.security', () => {
     });
 
     it('should throw on duplicate ticker', async () => {
-      await insert(testSecurity);
-      await expect(insert(testSecurity)).rejects.toThrow();
+      await Security.insert(testSecurity);
+      await expect(Security.insert(testSecurity)).rejects.toThrow();
     });
   });
 
   describe('.findMaybeOneById', () => {
     it('should find security by id', async () => {
-      const inserted = await insert(testSecurity);
-      const found = await findMaybeOneById(inserted.id);
+      const inserted = await Security.insert(testSecurity);
+      const found = await Security.findMaybeOneById(inserted.id);
 
       expect(found).toMatchObject(testSecurity);
     });
 
     it('should return null for non-existent id', async () => {
-      const found = await findMaybeOneById(uuid.v7());
+      const found = await Security.findMaybeOneById(uuid.v7());
       expect(found).toBeNull();
     });
   });
 
   describe('.findMaybeOneByTicker', () => {
     it('should find security by ticker', async () => {
-      await insert(testSecurity);
-      const found = await findMaybeOneByTicker(testSecurity.ticker);
+      await Security.insert(testSecurity);
+      const found = await Security.findMaybeOneByTicker(testSecurity.ticker);
 
       expect(found).toMatchObject(testSecurity);
     });
 
     it('should return null for non-existent ticker', async () => {
-      const found = await findMaybeOneByTicker('FAKE');
+      const found = await Security.findMaybeOneByTicker('FAKE');
       expect(found).toBeNull();
     });
   });
 
   describe('.updateById', () => {
     it('should update security by id', async () => {
-      const inserted = await insert(testSecurity);
+      const inserted = await Security.insert(testSecurity);
       const updates = { name: 'Updated Name' };
 
       const updated = await updateById(inserted.id, updates);
@@ -91,10 +85,10 @@ describe('models.securities.security', () => {
 
   describe('.updateByTicker', () => {
     it('should update security by ticker', async () => {
-      await insert(testSecurity);
+      await Security.insert(testSecurity);
       const updates = { name: 'Updated Name' };
 
-      const updated = await updateByTicker(testSecurity.ticker, updates);
+      const updated = await Security.updateByTicker(testSecurity.ticker, updates);
 
       expect(updated).toMatchObject({
         ...testSecurity,

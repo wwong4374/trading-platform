@@ -26,7 +26,7 @@ export async function findMaybeOneById(id: string): Promise<Security | null> {
 }
 
 export async function findMaybeOneByTicker(ticker: string): Promise<Security | null> {
-  const security = await db(TABLE_NAME).where({ ticker }).first();
+  const security = await db(TABLE_NAME).where({ ticker: ticker.toUpperCase() }).first();
   return security || null;
 }
 
@@ -43,16 +43,17 @@ export async function insert(values: BaseSecurity): Promise<Security> {
 }
 
 export async function updateById(id: string, values: UpsertValues): Promise<Security> {
-  const [security] = await db(TABLE_NAME)
-    .where({ id })
-    .update({ ...values, updated: new Date() })
-    .returning('*');
+  const updateValues = { ...values, updated: new Date() };
+  if (values.ticker) {
+    updateValues.ticker = values.ticker.toUpperCase();
+  }
+  const [security] = await db(TABLE_NAME).where({ id }).update(updateValues).returning('*');
   return security;
 }
 
 export async function updateByTicker(ticker: string, values: UpsertValues): Promise<Security> {
   const [security] = await db(TABLE_NAME)
-    .where({ ticker })
+    .where({ ticker: ticker.toUpperCase() })
     .update({ ...values, updated: new Date() })
     .returning('*');
   return security;
