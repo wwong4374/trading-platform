@@ -29,7 +29,12 @@
     "start": "ts-node src/index.ts"
   },
   "lint-staged": {
-    "*.ts": ["eslint --fix", "prettier --write"],
-    "*.{json,md}": ["prettier --write"]
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
