@@ -8,7 +8,7 @@ export enum SecurityType {
   CRYPTO = 'CRYPTO',
 }
 
-interface BaseSecurity {
+export interface BaseSecurity {
   ticker: string;
   name: string;
   type: SecurityType;
@@ -16,7 +16,7 @@ interface BaseSecurity {
 
 interface Security extends BaseItem, BaseSecurity {}
 
-type UpsertValues = Partial<BaseSecurity>;
+type UpdateValues = Partial<BaseSecurity>;
 
 const TABLE_NAME = Table.Securities;
 
@@ -42,7 +42,7 @@ export async function insert(values: BaseSecurity): Promise<Security> {
   return security;
 }
 
-export async function updateById(id: string, values: UpsertValues): Promise<Security> {
+export async function updateById(id: string, values: UpdateValues): Promise<Security> {
   const updateValues = { ...values, updated: new Date() };
   if (values.ticker) {
     updateValues.ticker = values.ticker.toUpperCase();
@@ -51,7 +51,7 @@ export async function updateById(id: string, values: UpsertValues): Promise<Secu
   return security;
 }
 
-export async function updateByTicker(ticker: string, values: UpsertValues): Promise<Security> {
+export async function updateByTicker(ticker: string, values: UpdateValues): Promise<Security> {
   const [security] = await db(TABLE_NAME)
     .where({ ticker: ticker.toUpperCase() })
     .update({ ...values, updated: new Date() })

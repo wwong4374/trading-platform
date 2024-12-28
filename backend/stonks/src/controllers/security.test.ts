@@ -20,7 +20,7 @@ describe('Security Controller', () => {
     await db(TABLE_NAME).del();
   });
 
-  const testSecurity = {
+  const testSecurity: Security.BaseSecurity = {
     ticker: 'AAPL',
     name: 'Apple Inc.',
     type: SecurityType.STOCK,
