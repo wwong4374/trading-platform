@@ -8,7 +8,7 @@ import { SecurityType, updateById } from './security';
 
 const TABLE_NAME = Table.Securities;
 
-describe('models.securities.security', () => {
+describe('models.security', () => {
   beforeEach(async () => {
     await db(TABLE_NAME).del();
   });
