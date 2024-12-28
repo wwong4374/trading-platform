@@ -1,15 +1,26 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
+import { ParamsDictionary } from 'express-serve-static-core';
 
 import * as Security from '../models/security';
-import { controller } from './common';
 
 export const router = express.Router({ mergeParams: true });
 
-// TODO: implement
-router.get('/:id', getSecurityById());
-
-function getSecurityById() {
-  return controller((req) => {
-    return Security.findMaybeOneById(req.params.id);
-  });
+interface GetSecurityByIdParams extends ParamsDictionary {
+  id: string;
 }
+
+async function getSecurityById(req: Request<GetSecurityByIdParams>, res: Response) {
+  try {
+    const security = await Security.findMaybeOneById(req.params.id);
+    if (!security) {
+      res.status(404).json({ error: 'Not found' });
+      return;
+    }
+    res.json(security);
+  } catch (error) {
+    console.error('Error getting security:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+router.get('/:id', getSecurityById);

@@ -36,7 +36,7 @@
     "db-seed-test": "knex --knexfile knexfile.ts seed:run --env test",
     "format": "prettier --write \"**/*.{ts,json,md}\"",
     "lint": "eslint . --ext .ts",
-    "start": "ts-node src/index.ts",
+    "start": "ts-node stonks/src/index.ts",
     "test-setup": "NODE_ENV=test yarn db-create && NODE_ENV=test yarn db-migrate",
     "test": "vitest --watch --reporter verbose"
   },
