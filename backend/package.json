@@ -1,46 +1,21 @@
 {
-  "name": "trading-platform",
+  "name": "trading-platform-backend",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:wwong4374/trading-platform.git",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "knex": "^3.1.0",
-    "pg": "^8.13.1",
-    "uuid": "^11.0.3"
+  "private": true,
+  "workspaces": [
+    "stonks"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/knex": "^0.16.1",
-    "@types/node": "^22.10.2",
-    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "lint-staged": "^15.2.11",
-    "prettier": "^3.4.2",
-    "supertest": "^7.0.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2",
-    "vitest": "^1.3.1"
-  },
-  "scripts": {
-    "db-create": "ts-node createDatabase.ts",
-    "db-migrate": "knex --knexfile knexfile.ts migrate:latest",
-    "db-migrate-test": "knex --knexfile knexfile.ts migrate:latest --env test",
-    "db-migrate-make": "knex --knexfile knexfile.ts migrate:make",
-    "db-migrate-rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "db-migrate-rollback-test": "knex --knexfile knexfile.ts migrate:rollback --env test",
-    "db-seed": "knex --knexfile knexfile.ts seed:run",
-    "db-seed-test": "knex --knexfile knexfile.ts seed:run --env test",
-    "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "lint": "eslint . --ext .ts",
-    "start": "ts-node stonks/src/index.ts",
-    "test-setup": "NODE_ENV=test yarn db-create && NODE_ENV=test yarn db-migrate",
-    "test": "vitest --watch --reporter verbose"
+    "prettier": "^3.4.2"
   },
   "lint-staged": {
     "*.ts": [

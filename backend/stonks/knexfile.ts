@@ -14,10 +14,10 @@ const config: { [key: string]: Knex.Config } = {
       database: process.env.DB_NAME,
     },
     migrations: {
-      directory: './stonks/db/migrations',
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './stonks/db/seeds',
+      directory: './db/seeds',
     },
   },
   test: {
@@ -30,10 +30,10 @@ const config: { [key: string]: Knex.Config } = {
       database: process.env.TEST_DB_NAME,
     },
     migrations: {
-      directory: './stonks/db/migrations',
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './stonks/db/seeds',
+      directory: './db/seeds',
     },
   },
 };
