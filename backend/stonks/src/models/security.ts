@@ -1,6 +1,8 @@
 import { BaseItem, Table } from './base';
 import { db } from '../../db/connection';
 
+const TABLE_NAME = Table.Securities;
+
 export enum SecurityType {
   STOCK = 'STOCK',
   BOND = 'BOND',
@@ -17,8 +19,6 @@ export interface BaseSecurity {
 interface Security extends BaseItem, BaseSecurity {}
 
 export type UpdateValues = Partial<BaseSecurity>;
-
-const TABLE_NAME = Table.Securities;
 
 export async function findMaybeOneById(id: string): Promise<Security | null> {
   const security = await db(TABLE_NAME).where({ id }).first();
