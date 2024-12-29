@@ -16,7 +16,7 @@ export interface BaseSecurity {
 
 interface Security extends BaseItem, BaseSecurity {}
 
-type UpdateValues = Partial<BaseSecurity>;
+export type UpdateValues = Partial<BaseSecurity>;
 
 const TABLE_NAME = Table.Securities;
 

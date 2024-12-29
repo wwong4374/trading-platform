@@ -76,4 +76,29 @@ describe('controllers.security', () => {
       expect(response.body).toEqual({ error: 'Not found' });
     });
   });
+
+  describe('POST /securities', () => {
+    test('should create a new security', async () => {
+      const response = await request.post('/securities').send(testSecurity);
+
+      expect(response.status).toBe(201);
+      expect(response.body).toMatchObject({ ...testSecurity, id: expect.any(String) });
+    });
+
+    test('should return 500 when invalid security is provided', async () => {
+      const response = await request.post('/securities').send({
+        ...testSecurity,
+        type: 'INVALID',
+      });
+      const response2 = await request.post('/securities').send({
+        ...testSecurity,
+        type: undefined,
+      });
+
+      expect(response.status).toBe(500);
+      expect(response2.status).toBe(500);
+      expect(response.body).toEqual({ error: 'Internal server error' });
+      expect(response2.body).toEqual({ error: 'Internal server error' });
+    });
+  });
 });
