@@ -31,7 +31,7 @@ describe('models.price', () => {
       const security = await Security.insert(testSecurity);
       const basePrice: Price.BasePrice = {
         securityId: security.id,
-        tradingDate: new Date('2024-01-01T00:00:00.000Z'),
+        tradingDate: new Date(),
         open: 100,
         high: 110,
         low: 95,
@@ -51,7 +51,7 @@ describe('models.price', () => {
     test('should throw on invalid security id', async () => {
       const basePrice = {
         securityId: uuid.v7(),
-        tradingDate: new Date('2024-01-01T00:00:00.000Z'),
+        tradingDate: new Date(),
         open: 100,
         high: 110,
         low: 95,

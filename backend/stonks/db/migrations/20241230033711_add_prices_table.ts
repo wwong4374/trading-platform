@@ -12,7 +12,7 @@ export async function up(knex: Knex): Promise<void> {
       .notNullable()
       .references('id')
       .inTable('securities');
-    table.date('tradingDate').notNullable();
+    table.timestamp('tradingDate').notNullable();
     table.integer('open').notNullable();
     table.integer('high').notNullable();
     table.integer('low').notNullable();
