@@ -9,8 +9,8 @@ export async function up(knex: Knex): Promise<void> {
     table.timestamp('created').notNullable().defaultTo(knex.fn.now());
     table.timestamp('updated').notNullable().defaultTo(knex.fn.now());
     table.text('ticker').notNullable();
-    table.text('name').notNullable();
     table.text('type').notNullable().checkIn(validTypes);
+    table.text('name');
   });
 }
 
