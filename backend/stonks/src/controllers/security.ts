@@ -11,9 +11,14 @@ interface GetSecurityByIdParams extends ParamsDictionary {
 interface GetSecurityByTickerParams extends ParamsDictionary {
   ticker: string;
 }
-interface CreateSecurityParams extends ParamsDictionary, Security.BaseSecurity {}
+interface CreateSecurityParams
+  extends ParamsDictionary,
+    Security.BaseSecurity {}
 
-async function getSecurityById(req: Request<GetSecurityByIdParams>, res: Response) {
+async function getSecurityById(
+  req: Request<GetSecurityByIdParams>,
+  res: Response
+) {
   try {
     const security = await Security.findMaybeOneById(req.params.id);
     if (!security) {
@@ -27,7 +32,10 @@ async function getSecurityById(req: Request<GetSecurityByIdParams>, res: Respons
   }
 }
 
-async function getSecurityByTicker(req: Request<GetSecurityByTickerParams>, res: Response) {
+async function getSecurityByTicker(
+  req: Request<GetSecurityByTickerParams>,
+  res: Response
+) {
   try {
     const security = await Security.findMaybeOneByTicker(req.params.ticker);
     if (!security) {
@@ -41,7 +49,10 @@ async function getSecurityByTicker(req: Request<GetSecurityByTickerParams>, res:
   }
 }
 
-async function createSecurity(req: Request<CreateSecurityParams>, res: Response) {
+async function createSecurity(
+  req: Request<CreateSecurityParams>,
+  res: Response
+) {
   try {
     const security = await Security.insert(req.body);
     res.status(201).json(security);

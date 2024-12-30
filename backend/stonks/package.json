@@ -31,6 +31,7 @@
     "db-seed-test": "knex --knexfile knexfile.ts seed:run --env test",
     "start": "ts-node src/index.ts",
     "test-setup": "NODE_ENV=test yarn db-create && NODE_ENV=test yarn db-migrate",
-    "test": "vitest --watch --reporter verbose"
+    "test": "vitest",
+    "test-watch": "vitest --watch --reporter verbose"
   }
 }

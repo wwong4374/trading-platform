@@ -5,7 +5,11 @@ import { promisify } from 'util';
 dotenv.config();
 const execPromise = promisify(exec);
 
-async function createDatabase(dbName: string, dbUser: string, dbPassword: string) {
+async function createDatabase(
+  dbName: string,
+  dbUser: string,
+  dbPassword: string
+) {
   const commands = [
     `SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '${dbName}';`,
     `REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM ${dbUser};`,
@@ -28,7 +32,9 @@ async function createDatabase(dbName: string, dbUser: string, dbPassword: string
   }
 
   try {
-    await execPromise(`psql ${dbName} -c "GRANT ALL ON SCHEMA public TO ${dbUser};"`);
+    await execPromise(
+      `psql ${dbName} -c "GRANT ALL ON SCHEMA public TO ${dbUser};"`
+    );
     console.log(`Granted schema permissions for ${dbName}`);
   } catch (err) {
     console.error(`Error granting schema permissions for ${dbName}:`, err);
@@ -36,7 +42,11 @@ async function createDatabase(dbName: string, dbUser: string, dbPassword: string
 }
 
 async function setup() {
-  await createDatabase(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD!);
+  await createDatabase(
+    process.env.DB_NAME!,
+    process.env.DB_USER!,
+    process.env.DB_PASSWORD!
+  );
   await createDatabase(
     process.env.TEST_DB_NAME!,
     process.env.TEST_DB_USER!,

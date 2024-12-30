@@ -88,7 +88,10 @@ describe('models.security', () => {
       await Security.insert(testSecurity);
       const updates = { name: 'Updated Name' };
 
-      const updated = await Security.updateByTicker(testSecurity.ticker, updates);
+      const updated = await Security.updateByTicker(
+        testSecurity.ticker,
+        updates
+      );
 
       expect(updated).toMatchObject({
         ...testSecurity,

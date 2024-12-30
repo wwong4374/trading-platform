@@ -58,7 +58,9 @@ describe('controllers.security', () => {
   describe('GET /securities/:ticker', () => {
     test('should return security when found by ticker', async () => {
       const security = await Security.insert(testSecurity);
-      const response = await request.get(`/securities/ticker/${security.ticker}`);
+      const response = await request.get(
+        `/securities/ticker/${security.ticker}`
+      );
 
       expect(response.status).toBe(200);
       expect(response.body).toMatchObject({
@@ -82,7 +84,10 @@ describe('controllers.security', () => {
       const response = await request.post('/securities').send(testSecurity);
 
       expect(response.status).toBe(201);
-      expect(response.body).toMatchObject({ ...testSecurity, id: expect.any(String) });
+      expect(response.body).toMatchObject({
+        ...testSecurity,
+        id: expect.any(String),
+      });
     });
 
     test('should return 500 when invalid security is provided', async () => {
