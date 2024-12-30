@@ -49,7 +49,7 @@ export function App() {
             Welcome to Tradr
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            Your modern platform for simulated securities trading
+            Your modern platform for mock securities trading
           </Typography>
         </Container>
       </Box>
