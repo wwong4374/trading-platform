@@ -9,6 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import { SecuritiesTable } from './components/SecuritiesTable';
+
 const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -51,6 +53,10 @@ export function App() {
           <Typography variant="subtitle1" color="text.secondary">
             Your modern platform for mock securities trading
           </Typography>
+          <Box sx={{ mt: 8 }}>
+            <Typography variant="h5">Trade now:</Typography>
+            <SecuritiesTable />
+          </Box>
         </Container>
       </Box>
     </ThemeProvider>
