@@ -29,7 +29,7 @@
     "db-migrate-rollback-test": "knex --knexfile knexfile.ts migrate:rollback --env test",
     "db-seed": "knex --knexfile knexfile.ts seed:run",
     "db-seed-test": "knex --knexfile knexfile.ts seed:run --env test",
-    "start": "ts-node src/index.ts",
+    "start": "rm -rf node_modules && yarn install && ts-node src/index.ts",
     "test-setup": "NODE_ENV=test yarn db-create && NODE_ENV=test yarn db-migrate",
     "test": "vitest",
     "test-watch": "vitest --watch --reporter verbose"
