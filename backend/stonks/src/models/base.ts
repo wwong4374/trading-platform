@@ -8,3 +8,8 @@ export enum Table {
   Price = 'prices',
   Security = 'securities',
 }
+
+export enum SortOrder {
+  Ascending = 'asc',
+  Descending = 'desc',
+}

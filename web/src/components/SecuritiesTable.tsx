@@ -13,9 +13,6 @@ enum SecurityType {
   Etf = 'ETF',
   Crypto = 'Crypto',
 }
-
-const tableHeaders = ['Ticker', 'Name', 'Type', 'Latest Price'];
-
 interface Security {
   id: string;
   ticker: string;
@@ -24,6 +21,7 @@ interface Security {
   name?: string | null;
 }
 
+// TODO: actually retrieve securities from DB
 const mockSecurities: Security[] = [
   {
     id: '1',
@@ -49,12 +47,13 @@ const mockSecurities: Security[] = [
 ];
 
 export function SecuritiesTable() {
+  const TABLE_HEADERS = ['Ticker', 'Name', 'Type', 'Latest Price'];
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            {tableHeaders.map((tableHeader) => (
+            {TABLE_HEADERS.map((tableHeader) => (
               <TableCell>{tableHeader}</TableCell>
             ))}
           </TableRow>
