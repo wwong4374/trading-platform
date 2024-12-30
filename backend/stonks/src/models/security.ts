@@ -1,22 +1,22 @@
 import { BaseItem, Table } from './base';
 import { db } from '../../db/connection';
 
-const TABLE_NAME = Table.Securities;
+const TABLE_NAME = Table.Security;
 
 export enum SecurityType {
-  STOCK = 'STOCK',
-  BOND = 'BOND',
-  ETF = 'ETF',
-  CRYPTO = 'CRYPTO',
+  Stock = 'STOCK',
+  Bond = 'BOND',
+  Etf = 'ETF',
+  Crypto = 'CRYPTO',
 }
 
 export interface BaseSecurity {
   ticker: string;
-  name: string;
   type: SecurityType;
+  name?: string | null;
 }
 
-interface Security extends BaseItem, BaseSecurity {}
+export interface Security extends BaseItem, BaseSecurity {}
 
 export type UpdateValues = Partial<BaseSecurity>;
 
@@ -39,8 +39,6 @@ export async function insert(values: BaseSecurity): Promise<Security> {
     .insert({
       ...values,
       ticker: values.ticker.toUpperCase(),
-      created: new Date(),
-      updated: new Date(),
     })
     .returning('*');
   return security;

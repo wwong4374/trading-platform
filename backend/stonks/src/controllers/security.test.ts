@@ -9,7 +9,7 @@ import { SecurityType } from '../models/security';
 import { app } from '../app';
 
 const request = supertest(app);
-const TABLE_NAME = Table.Securities;
+const TABLE_NAME = Table.Security;
 
 describe('controllers.security', () => {
   beforeEach(async () => {
