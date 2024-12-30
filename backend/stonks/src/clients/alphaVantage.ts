@@ -17,7 +17,12 @@ interface DailyTradingSnapshot {
 export async function getTimeSeriesForTicker(
   ticker: string
 ): Promise<DailyTradingSnapshot[]> {
-  const url = `${ALPHA_VANTAGE_BASE_URL}/query?function=${AlphaVantageEndpoint.TIME_SERIES_DAILY}&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`;
+  const params = new URLSearchParams({
+    function: AlphaVantageEndpoint.TIME_SERIES_DAILY,
+    symbol: ticker,
+    apikey: process.env.ALPHA_VANTAGE_API_KEY ?? '',
+  });
+  const url = `${ALPHA_VANTAGE_BASE_URL}/query?${params.toString()}`;
   const response = await fetch(url);
   const data = await response.json();
 
