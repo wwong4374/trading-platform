@@ -6,7 +6,7 @@ import { Table } from './base';
 import * as Security from './security';
 import { SecurityType, updateById } from './security';
 
-const TABLE_NAME = Table.Securities;
+const TABLE_NAME = Table.Security;
 
 describe('models.security', () => {
   beforeEach(async () => {
@@ -17,10 +17,10 @@ describe('models.security', () => {
     await db(TABLE_NAME).del();
   });
 
-  const testSecurity = {
+  const testSecurity: Security.BaseSecurity = {
     ticker: 'AAPL',
     name: 'Apple Inc.',
-    type: SecurityType.STOCK,
+    type: SecurityType.Stock,
   };
 
   describe('.insert', () => {
@@ -88,7 +88,10 @@ describe('models.security', () => {
       await Security.insert(testSecurity);
       const updates = { name: 'Updated Name' };
 
-      const updated = await Security.updateByTicker(testSecurity.ticker, updates);
+      const updated = await Security.updateByTicker(
+        testSecurity.ticker,
+        updates
+      );
 
       expect(updated).toMatchObject({
         ...testSecurity,

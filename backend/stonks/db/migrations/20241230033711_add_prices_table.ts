@@ -7,8 +7,12 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('id').primary().notNullable().defaultTo(knex.fn.uuid());
     table.timestamp('created').notNullable().defaultTo(knex.fn.now());
     table.timestamp('updated').notNullable().defaultTo(knex.fn.now());
-    table.uuid('securityId').notNullable().references('id').inTable('securities');
-    table.date('tradingDate').notNullable();
+    table
+      .uuid('securityId')
+      .notNullable()
+      .references('id')
+      .inTable('securities');
+    table.timestamp('tradingDate').notNullable();
     table.integer('open').notNullable();
     table.integer('high').notNullable();
     table.integer('low').notNullable();

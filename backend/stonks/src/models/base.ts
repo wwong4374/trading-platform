@@ -5,5 +5,6 @@ export interface BaseItem {
 }
 
 export enum Table {
-  Securities = 'securities',
+  Price = 'prices',
+  Security = 'securities',
 }
