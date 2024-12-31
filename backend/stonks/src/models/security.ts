@@ -5,10 +5,10 @@ import { db } from '../../db/connection';
 const TABLE_NAME = Table.Security;
 
 export enum SecurityType {
-  Stock = 'Stock',
-  Bond = 'Bond',
+  Stock = 'STOCK',
+  Bond = 'BOND',
   Etf = 'ETF',
-  Crypto = 'Crypto',
+  Crypto = 'CRYPTO',
 }
 
 export interface BaseSecurity {

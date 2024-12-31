@@ -11,9 +11,6 @@ interface GetSecurityByIdParams extends ParamsDictionary {
 interface GetSecurityByTickerParams extends ParamsDictionary {
   ticker: string;
 }
-interface CreateSecurityParams
-  extends ParamsDictionary,
-    Security.BaseSecurity {}
 
 async function getSecurityById(
   req: Request<GetSecurityByIdParams>,
@@ -50,7 +47,7 @@ async function getSecurityByTicker(
 }
 
 async function createSecurity(
-  req: Request<CreateSecurityParams>,
+  req: Request<object, object, Security.BaseSecurity>,
   res: Response
 ) {
   try {
