@@ -25,6 +25,11 @@ interface SecurityWithPrice
   extends Security,
     Omit<Price.BasePrice, 'securityId'> {}
 
+export async function findAll(): Promise<Security[]> {
+  const securities = await db(TABLE_NAME).select('*');
+  return securities;
+}
+
 export async function findMaybeOneById(id: string): Promise<Security | null> {
   const security = await db(TABLE_NAME).where({ id }).first();
   return security || null;

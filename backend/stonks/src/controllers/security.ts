@@ -12,6 +12,16 @@ interface GetSecurityByTickerParams extends ParamsDictionary {
   ticker: string;
 }
 
+async function getAllSecurities(res: Response) {
+  try {
+    const securities = await Security.findAll();
+    res.json(securities);
+  } catch (error) {
+    console.error('Error getting all securities:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function getSecurityById(
   req: Request<GetSecurityByIdParams>,
   res: Response
@@ -46,6 +56,21 @@ async function getSecurityByTicker(
   }
 }
 
+async function getSecurityWithPricesByTicker(
+  req: Request<GetSecurityByTickerParams>,
+  res: Response
+) {
+  try {
+    const securityWithPrices = await Security.findOneWithPricesByTicker(
+      req.params.ticker
+    );
+    res.json(securityWithPrices);
+  } catch (error) {
+    console.error('Error getting security with prices:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function createSecurity(
   req: Request<object, object, Security.BaseSecurity>,
   res: Response
@@ -59,6 +84,8 @@ async function createSecurity(
   }
 }
 
+router.get('/', getAllSecurities);
 router.get('/:id', getSecurityById);
 router.get('/ticker/:ticker', getSecurityByTicker);
+router.get('/ticker/:ticker/prices', getSecurityWithPricesByTicker);
 router.post('/', createSecurity);
