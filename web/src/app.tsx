@@ -8,6 +8,7 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { SecuritiesTable } from './components/SecuritiesTable';
 
@@ -35,30 +36,34 @@ const theme = createTheme({
 });
 
 export function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" elevation={0}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Tradr
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static" elevation={0}>
+            <Toolbar>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Tradr
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Container maxWidth="lg" sx={{ mt: 4 }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Welcome to Tradr
             </Typography>
-          </Toolbar>
-        </AppBar>
-        <Container maxWidth="lg" sx={{ mt: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Welcome to Tradr
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            Your modern platform for mock securities trading
-          </Typography>
-          <Box sx={{ mt: 8 }}>
-            <Typography variant="h5">Trade now:</Typography>
-            <SecuritiesTable />
-          </Box>
-        </Container>
-      </Box>
-    </ThemeProvider>
+            <Typography variant="subtitle1" color="text.secondary">
+              Your modern platform for mock securities trading
+            </Typography>
+            <Box sx={{ mt: 8 }}>
+              <Typography variant="h5">Trade now:</Typography>
+              <SecuritiesTable />
+            </Box>
+          </Container>
+        </Box>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

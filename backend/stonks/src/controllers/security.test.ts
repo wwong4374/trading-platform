@@ -23,7 +23,7 @@ describe('controllers.security', () => {
   const testSecurity: Security.BaseSecurity = {
     ticker: 'AAPL',
     name: 'Apple Inc.',
-    type: SecurityType.STOCK,
+    type: SecurityType.Stock,
   };
 
   describe('GET /securities/:id', () => {

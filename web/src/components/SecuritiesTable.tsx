@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -6,6 +7,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
 
 enum SecurityType {
   Stock = 'Stock',
@@ -13,9 +15,6 @@ enum SecurityType {
   Etf = 'ETF',
   Crypto = 'Crypto',
 }
-
-const tableHeaders = ['Ticker', 'Name', 'Type', 'Latest Price'];
-
 interface Security {
   id: string;
   ticker: string;
@@ -24,43 +23,47 @@ interface Security {
   name?: string | null;
 }
 
-const mockSecurities: Security[] = [
-  {
-    id: '1',
-    ticker: 'AAPL',
-    type: SecurityType.Stock,
-    name: 'Apple Inc.',
-    latestPrice: 17350,
-  },
-  {
-    id: '2',
-    ticker: 'GOOGL',
-    type: SecurityType.Stock,
-    name: 'Alphabet Inc.',
-    latestPrice: 14180,
-  },
-  {
-    id: '3',
-    ticker: 'MSFT',
-    type: SecurityType.Stock,
-    name: 'Microsoft Corporation',
-    latestPrice: 41165,
-  },
-];
+async function fetchSecurities() {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/securities`
+  );
+  if (!response.ok) {
+    throw new Error('Failed to fetch securities');
+  }
+  return response.json();
+}
 
 export function SecuritiesTable() {
+  const {
+    data: securities,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['securities'],
+    queryFn: fetchSecurities,
+  });
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
+  if (error) {
+    return <div>Error loading securities: {error.message}</div>;
+  }
+
+  const TABLE_HEADERS = ['Ticker', 'Name', 'Type', 'Latest Price'];
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            {tableHeaders.map((tableHeader) => (
-              <TableCell>{tableHeader}</TableCell>
+            {TABLE_HEADERS.map((tableHeader) => (
+              <TableCell key={tableHeader}>{tableHeader}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {mockSecurities.map((security) => (
+          {securities.map((security: Security) => (
             <TableRow key={security.id}>
               <TableCell>{security.ticker}</TableCell>
               <TableCell>{security.name ?? security.ticker}</TableCell>
