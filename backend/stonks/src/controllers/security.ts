@@ -12,7 +12,7 @@ interface GetSecurityByTickerParams extends ParamsDictionary {
   ticker: string;
 }
 
-async function getAllSecurities(res: Response) {
+async function getAllSecurities(req: Request, res: Response) {
   try {
     const securities = await Security.findAll();
     res.json(securities);

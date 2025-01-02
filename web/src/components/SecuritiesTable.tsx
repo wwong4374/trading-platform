@@ -58,7 +58,7 @@ export function SecuritiesTable() {
         <TableHead>
           <TableRow>
             {TABLE_HEADERS.map((tableHeader) => (
-              <TableCell>{tableHeader}</TableCell>
+              <TableCell key={tableHeader}>{tableHeader}</TableCell>
             ))}
           </TableRow>
         </TableHead>
