@@ -64,6 +64,7 @@ async function getSecurityWithPricesByTicker(
     const securityWithPrices = await Security.findOneWithPricesByTicker(
       req.params.ticker
     );
+    // TODO: also retrieve latest price from alpha vantage and save to DB
     res.json(securityWithPrices);
   } catch (error) {
     console.error('Error getting security with prices:', error);
