@@ -7,7 +7,7 @@ enum AlphaVantageEndpoint {
   TIME_SERIES_DAILY = 'TIME_SERIES_DAILY',
 }
 
-export async function getPricesForTicker(ticker: string): Promise<BasePrice[]> {
+export async function getPriceForTicker(ticker: string): Promise<BasePrice[]> {
   const params = new URLSearchParams({
     function: AlphaVantageEndpoint.TIME_SERIES_DAILY,
     symbol: ticker,

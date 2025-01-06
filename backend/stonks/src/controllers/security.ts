@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 
+import * as Price from '../models/price';
 import * as Security from '../models/security';
 
 export const router = express.Router({ mergeParams: true });
@@ -61,10 +62,10 @@ async function getSecurityWithPricesByTicker(
   res: Response
 ) {
   try {
+    await Price.getLatestPriceForTicker(req.params.ticker);
     const securityWithPrices = await Security.findOneWithPricesByTicker(
       req.params.ticker
     );
-    // TODO: also retrieve latest price from alpha vantage and save to DB
     res.json(securityWithPrices);
   } catch (error) {
     console.error('Error getting security with prices:', error);
